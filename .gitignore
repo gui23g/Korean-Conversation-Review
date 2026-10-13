@@ -1,0 +1,5 @@
+.context/
+tmp/
+book-text.txt
+*.traineddata
+*.traineddata.gz
