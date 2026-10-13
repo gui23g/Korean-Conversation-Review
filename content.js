@@ -1,6 +1,6 @@
 window.COURSE = {
   "title": "서울대 한국어+ 1A",
-  "scope": "PDF pages 1–145 · Hangul + units 1–4",
+  "scope": "Hangul alphabet + units 1–4",
   "items": [
     {
       "id": "k-817739a33813",
