@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-label="Three different drinks">
+  <rect width="640" height="480" rx="32" fill="#f7f4e9"/>
+  <ellipse cx="320" cy="385" rx="235" ry="28" fill="#e8e1cf"/>
+  <g stroke="#365a52" stroke-linejoin="round" stroke-width="10">
+    <path d="M110 150h116l-13 205a22 22 0 0 1-22 20h-46a22 22 0 0 1-22-20z" fill="#d9f0ed"/>
+    <path d="M123 249h90l-7 105a14 14 0 0 1-14 13h-46a14 14 0 0 1-14-13z" fill="#8ed1da" stroke="none"/>
+    <path d="m186 145 30-66" fill="none" stroke="#d99148" stroke-width="12" stroke-linecap="round"/>
+    <path d="M270 125h118l-14 230a22 22 0 0 1-22 20h-46a22 22 0 0 1-22-20z" fill="#fffdf6"/>
+    <path d="M283 245h92l-7 109a14 14 0 0 1-14 13h-46a14 14 0 0 1-14-13z" fill="#f2a04f" stroke="none"/>
+    <path d="m337 120 25-60" fill="none" stroke="#dd754e" stroke-width="12" stroke-linecap="round"/>
+    <path d="M435 163h92l-12 192a22 22 0 0 1-22 20h-24a22 22 0 0 1-22-20z" fill="#e5f0d8"/>
+    <path d="M448 250h67l-6 104a14 14 0 0 1-14 13h-24a14 14 0 0 1-14-13z" fill="#a9c478" stroke="none"/>
+    <path d="M449 163v-24a32 32 0 0 1 64 0v24" fill="none"/>
+    <path d="M458 202h47" fill="none" stroke="#fffdf6" stroke-width="8" stroke-linecap="round" opacity=".8"/>
+  </g>
+  <g fill="#fffdf6" opacity=".85">
+    <circle cx="153" cy="280" r="7"/><circle cx="180" cy="313" r="7"/><circle cx="344" cy="281" r="7"/>
+  </g>
+</svg>

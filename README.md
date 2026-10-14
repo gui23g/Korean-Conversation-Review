@@ -7,22 +7,20 @@ Made by: Guilherme "Boler" Lopes de Carvalho.
 ## Study experience
 
 - **Homepage:** introduces the review app and links to matching, pronunciation, and writing practice.
-- **Match word & photo:** match Korean words to pictures in four-pair rounds. Incorrect pairs show visual feedback and can be tried again; correct pairs fade and become disabled. Complete a round to continue.
-- **Pronunciation review:** read a Korean word or sentence with its meaning and play Korean audio at normal or slow speed. This is a listening review; the app does not use a microphone or grade the learner’s pronunciation. Consonants play their Korean names, and vowels play with silent initial ㅇ. A voice setup guide covers Windows, macOS, Android, and iPhone/iPad.
-- **Write what you see:** identify a picture from its English meaning cue and enter the answer in Hangul. The on-screen keyboard includes all 40 letters and composes syllables, compound vowels, and final consonants. It supports cursor insertion, selected-text replacement, spaces, punctuation, and component-level backspace. Isolated-letter questions use literal-letter mode.
-- **Full coverage:** all three exercise modes use the same study bank. Each chapter or content filter gets a shuffled cycle, and every selected entry appears before the cycle repeats. Completing a cycle lets the learner explicitly start a new shuffle. Small final matching rounds are supported.
-- **Study collection:** search the full bank, browse chapter counts, and review the complete alphabet chart.
+- **Match word & photo:** match Hangul vocabulary from the professor’s assigned pages to related pictures in four-pair rounds. Incorrect pairs show visual feedback and can be tried again; correct pairs fade and become disabled. Complete a round to continue.
+- **Pronunciation review:** practice the dialogue lines and guided role-play from the assigned speaking activities. Each card shows Hangul and its meaning and plays Korean audio at normal or slow speed. This is listening practice; the app does not use a microphone or grade pronunciation. A voice setup guide covers Windows, macOS, Android, and iPhone/iPad.
+- **Write what you see:** identify a picture from its English meaning cue and enter the matching vocabulary in Hangul. The on-screen keyboard composes syllables, compound vowels, and final consonants. It supports cursor insertion, selected-text replacement, spaces, punctuation, and component-level backspace.
+- **Exam-focused cycles:** Match and Write share the vocabulary from the assigned glossary pages; Pronunciation uses dialogue practice from the four assigned speaking pages. Each unit filter gets a shuffled cycle, and every item in the selected set appears before the cycle repeats. Completing a cycle lets the learner explicitly start a new shuffle. Small final matching rounds are supported.
+- **Study collection:** search the exam vocabulary and dialogue lines, browse unit counts, and see each item’s book page.
 - **Progress and answers:** queues, completed matching pairs, filters, and practice counts save locally under `korean-review-v1`. Unfinished matching rounds resume after reload. Writing fields reopen empty while mastery progress remains saved. Hint-assisted answers advance the cycle without counting as independent recall. Answers accept spacing and ordinary sentence punctuation differences while requiring the Korean text to match. Storage failures do not prevent practice.
 
 ## Course material and coverage
 
 The app is based on *Seoul National University Korean Plus, Student’s Book 1A*.
 
-The study scope covers the complete Hangul alphabet booklet and **chapters 1–4** of the book’s vocabulary and conversation content.
+The app follows the professor’s midterm guidance: written-test vocabulary from book pages **28–29, 38–39, 44–45, 54–55, 61, 70–71, and 76–77**; pronunciation review from the speaking activities on pages **25, 41, 57, and 73**. The app contains 93 vocabulary entries from those glossary pages and 36 dialogue and guided role-play lines from the speaking activities. The written test has 50 questions drawn from the assigned vocabulary pages.
 
-The exercise bank contains **995 entries**: 468 unique vocabulary headwords, 288 unique sentences and expressions, all 40 Hangul letters, 19 consonant names, and 120 syllables from the book’s writing tables. Repeated vocabulary remains in each relevant chapter, so the unique counts do not sum to the total. The bank includes vocabulary glossaries, alphabet example words, sound-contrast options, final-consonant sorting words, classroom expressions, greetings, and chapter conversation, reading, and writing examples. `coverage.json` lists chapter totals.
-
-The bank is transcribed from the book. English meanings provide practice cues. For long sentences and abstract terms, book illustrations provide context and the cue identifies the intended answer. Concrete vocabulary uses related images; countries use flags; letter and syllable exercises use sound-name cues. Image crops omit printed answer labels.
+English meanings provide writing and listening cues. Each vocabulary item uses a related image, and matching follows the Hangul text shown in the book. The library shows the selected vocabulary and speaking lines grouped by unit.
 
 ## Audio
 
@@ -72,6 +70,6 @@ node browser-test.cjs
 node edge-case-test.cjs
 ```
 
-`test.cjs` checks unique IDs, image files, Hangul decomposition and composition round trips, cursor operations, and answer normalization. Browser tests use Playwright and an installed Chrome browser; the bundled Codex runtime is used in this development environment.
+`test.cjs` checks the selected vocabulary and speaking scope, unique vocabulary images, asset files, Hangul decomposition and composition round trips, cursor operations, and answer normalization. Browser tests use Playwright and an installed Chrome browser; the bundled Codex runtime is used in this development environment.
 
-The browser checks cover matching errors and retries, disabled successful pairs, saved round restoration, non-repeating rounds, writing retries and hints, the Hangul keyboard, Korean audio configuration and fallback, collection search, final partial rounds, cycle completion, and mobile layouts at 390px. They use an isolated browser profile and do not change the learner’s saved progress. Screenshots and OCR / rendered-book intermediates are ignored under `tmp/`.
+The browser checks also confirm that every assigned vocabulary image loads, including the SVG illustrations, and cover matching errors and retries, disabled successful pairs, saved round restoration, non-repeating rounds, writing retries and hints, the Hangul keyboard, Korean audio configuration and fallback, collection search, final partial rounds, cycle completion, and mobile layouts at 390px. They use an isolated browser profile and do not change the learner’s saved progress. Screenshots and OCR / rendered-book intermediates are ignored under `tmp/`.

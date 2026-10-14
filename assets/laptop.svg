@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-label="Laptop computer">
+  <rect width="640" height="480" rx="32" fill="#f7f4e9"/>
+  <ellipse cx="324" cy="377" rx="235" ry="26" fill="#e8e1cf"/>
+  <path d="M190 90h260a20 20 0 0 1 20 20v205H170V110a20 20 0 0 1 20-20z" fill="#314c4b" stroke="#365a52" stroke-width="12" stroke-linejoin="round"/>
+  <rect x="194" y="115" width="212" height="167" rx="7" fill="#d6ece7"/>
+  <path d="M202 256c53-37 102-28 145-77 20-22 43-30 59-32v135H202z" fill="#8fc7ba"/>
+  <path d="M170 315h300l78 49a18 18 0 0 1-10 33H102a18 18 0 0 1-10-33z" fill="#bbc7c2" stroke="#365a52" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M210 327h221l30 22H180z" fill="#e8eee8"/>
+  <path d="M180 349h281" fill="none" stroke="#95a8a0" stroke-width="5" stroke-dasharray="7 7"/>
+  <path d="M279 378h83" fill="none" stroke="#71867d" stroke-width="5" stroke-linecap="round"/>
+</svg>

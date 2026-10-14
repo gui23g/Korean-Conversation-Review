@@ -1,6 +1,6 @@
 window.COURSE = {
   "title": "서울대 한국어+ 1A",
-  "scope": "Hangul alphabet + units 1–4",
+  "scope": "Vocabulary pages 28–29, 38–39, 44–45, 54–55, 61, 70–71 and 76–77; speaking pages 25, 41, 57 and 73",
   "items": [
     {
       "id": "k-817739a33813",
@@ -10086,3 +10086,71 @@ window.COURSE = {
     "히읗"
   ]
 };
+window.COURSE.scope = 'Vocabulary from pages 28–29, 38–39, 44–45, 54–55, 61, 70–71 and 76–77; speaking practice from pages 25, 41, 57 and 73.';
+window.COURSE.midtermScope = {
+  vocabularyPages: [28, 29, 38, 39, 44, 45, 54, 55, 61, 70, 71, 76, 77],
+  speakingPages: [25, 41, 57, 73],
+  vocabularyExclusions: ['자다']
+};
+for (const item of window.COURSE.items) {
+  if (item.group !== 'hangul') item.bookPage = item.page - 62;
+}
+const page91Photos = {
+  회사원: 'assets/photo-91-company.jpg',
+  프로그래머: 'assets/photo-91-programmer.jpg',
+  요리사: 'assets/photo-91-chef.jpg',
+  운동선수: 'assets/photo-91-athlete.jpg'
+};
+for (const [word, image] of Object.entries(page91Photos)) {
+  const item = window.COURSE.items.find(entry => entry.ko === word && entry.bookPage === 29);
+  if (item) { item.image = image; item.contextImage = false; }
+}
+const clock = window.COURSE.items.find(item => item.ko === '시계' && item.bookPage === 38);
+if (clock) { clock.image = 'assets/item-075.jpg'; clock.contextImage = false; }
+const eraser = window.COURSE.items.find(item => item.ko === '지우개' && item.bookPage === 39);
+if (eraser) { eraser.image = 'assets/item-083.jpg'; eraser.contextImage = false; }
+const book = window.COURSE.items.find(item => item.ko === '책' && item.bookPage === 39);
+if (book) { book.image = 'assets/item-025.jpg'; book.contextImage = false; }
+const pencil = window.COURSE.items.find(item => item.ko === '연필' && item.bookPage === 39);
+if (pencil) { pencil.image = 'assets/pencil.svg'; pencil.contextImage = false; }
+const room = window.COURSE.items.find(item => item.ko === '방' && item.bookPage === 44);
+if (room) { room.image = 'assets/item-091.jpg'; room.contextImage = false; }
+const laptop = window.COURSE.items.find(item => item.ko === '노트북' && item.bookPage === 45);
+if (laptop) { laptop.image = 'assets/laptop.svg'; laptop.contextImage = false; }
+const frenchReply = window.COURSE.items.find(item => item.ko === '저는 프랑스 사람이에요.' && item.page === 87);
+if (frenchReply) frenchReply.bookPage = 29;
+const bathroom = window.COURSE.items.find(item => item.ko === '화장실' && item.bookPage === 44);
+if (bathroom) { bathroom.image = 'assets/photo-106-bathroom.jpg'; bathroom.contextImage = false; }
+const food = window.COURSE.items.find(item => item.ko === '음식' && item.bookPage === 54);
+if (food) { food.image = 'assets/item-046.jpg'; food.contextImage = false; }
+const midtermFoodPhotos = {
+  과일: 'assets/photo-116-fruit.jpg',
+  음료수: 'assets/beverages.svg',
+  주스: 'assets/photo-119-juice.jpg'
+};
+for (const [word, image] of Object.entries(midtermFoodPhotos)) {
+  const item = window.COURSE.items.find(entry => entry.ko === word && entry.bookPage === 54);
+  if (item) { item.image = image; item.contextImage = false; }
+}
+window.COURSE.items.push(
+  { id: 'oral-p25-hello', ko: '안녕하세요?', en: 'Hello.', page: 87, bookPage: 25, group: '1', kind: 'phrase', image: 'assets/scene-1.jpg', contextImage: true },
+  { id: 'oral-p25-response', ko: '반가워요.', en: 'Nice to meet you too.', page: 87, bookPage: 25, group: '1', kind: 'phrase', image: 'assets/scene-1.jpg', contextImage: true },
+  { id: 'oral-p57-welcome', ko: '어서 오세요.', en: 'Welcome.', page: 119, bookPage: 57, group: '3', kind: 'phrase', image: 'assets/scene-3.jpg', contextImage: true },
+  { id: 'oral-p25-anna-question', ko: '안나 씨는 어느 나라 사람이에요?', en: 'What country is Anna from?', page: 87, bookPage: 25, group: '1', kind: 'phrase', practiceType: 'roleplay', image: 'assets/scene-1.jpg', contextImage: true },
+  { id: 'oral-p25-anna-answer', ko: '러시아 사람이에요.', en: 'Anna is Russian.', page: 87, bookPage: 25, group: '1', kind: 'phrase', practiceType: 'roleplay', image: 'assets/scene-1.jpg', contextImage: true },
+  { id: 'oral-p25-hai-question', ko: '하이 씨는 어느 나라 사람이에요?', en: 'What country is Hai from?', page: 87, bookPage: 25, group: '1', kind: 'phrase', practiceType: 'roleplay', image: 'assets/scene-1.jpg', contextImage: true },
+  { id: 'oral-p25-hai-answer', ko: '베트남 사람이에요.', en: 'Hai is Vietnamese.', page: 87, bookPage: 25, group: '1', kind: 'phrase', practiceType: 'roleplay', image: 'assets/scene-1.jpg', contextImage: true },
+  { id: 'oral-p25-nana-question', ko: '나나 씨는 어느 나라 사람이에요?', en: 'What country is Nana from?', page: 87, bookPage: 25, group: '1', kind: 'phrase', practiceType: 'roleplay', image: 'assets/scene-1.jpg', contextImage: true },
+  { id: 'oral-p25-nana-answer', ko: '중국 사람이에요.', en: 'Nana is Chinese.', page: 87, bookPage: 25, group: '1', kind: 'phrase', practiceType: 'roleplay', image: 'assets/scene-1.jpg', contextImage: true },
+  { id: 'oral-p25-minwoo-question', ko: '김민우 씨는 어느 나라 사람이에요?', en: 'What country is Minwoo Kim from?', page: 87, bookPage: 25, group: '1', kind: 'phrase', practiceType: 'roleplay', image: 'assets/scene-1.jpg', contextImage: true },
+  { id: 'oral-p25-minwoo-answer', ko: '한국 사람이에요.', en: 'Minwoo is Korean.', page: 87, bookPage: 25, group: '1', kind: 'phrase', practiceType: 'roleplay', image: 'assets/scene-1.jpg', contextImage: true },
+  { id: 'oral-p25-mari-question', ko: '마리 씨는 어느 나라 사람이에요?', en: 'What country is Mari from?', page: 87, bookPage: 25, group: '1', kind: 'phrase', practiceType: 'roleplay', image: 'assets/scene-1.jpg', contextImage: true },
+  { id: 'oral-p25-mari-answer', ko: '일본 사람이에요.', en: 'Mari is Japanese.', page: 87, bookPage: 25, group: '1', kind: 'phrase', practiceType: 'roleplay', image: 'assets/scene-1.jpg', contextImage: true },
+  { id: 'oral-p25-theo-question', ko: '테오 씨는 어느 나라 사람이에요?', en: 'What country is Theo from?', page: 87, bookPage: 25, group: '1', kind: 'phrase', practiceType: 'roleplay', image: 'assets/scene-1.jpg', contextImage: true },
+  { id: 'oral-p25-theo-answer', ko: '브라질 사람이에요.', en: 'Theo is Brazilian.', page: 87, bookPage: 25, group: '1', kind: 'phrase', practiceType: 'roleplay', image: 'assets/scene-1.jpg', contextImage: true }
+);
+const orangeJuiceReply = window.COURSE.items.find(item => item.ko === '오렌지 주스하고 딸기 주스가 있어요.' && item.page === 119);
+if (orangeJuiceReply) {
+  orangeJuiceReply.ko = '네. 오렌지 주스하고 딸기 주스가 있어요.';
+  orangeJuiceReply.en = 'Yes, there are orange and strawberry juices.';
+}
