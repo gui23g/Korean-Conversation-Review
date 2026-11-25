@@ -10154,3 +10154,34 @@ if (orangeJuiceReply) {
   orangeJuiceReply.ko = '네. 오렌지 주스하고 딸기 주스가 있어요.';
   orangeJuiceReply.en = 'Yes, there are orange and strawberry juices.';
 }
+window.COURSE.finalScope = {
+  vocabularyPages: [86, 92, 93, 102, 103, 109, 118, 119, 124, 125, 134, 135],
+  pdfPageOffset: 62,
+  expectedVocabularyCount: 100
+};
+const finalVocabulary = [
+  [86,'5','맛있다','delicious','😋'], [86,'5','맛없다','not delicious','😕'], [86,'5','재미있다','fun','🎉'], [86,'5','재미없다','not fun','😴'], [86,'5','많다','many / a lot','📚'], [86,'5','비싸다','expensive','💳'], [86,'5','싸다','inexpensive','🪙'], [86,'5','좋다','good','👍'], [86,'5','친절하다','friendly','🤝'], [86,'5','깨끗하다','clean','✨'],
+  [92,'5','메뉴','menu','📋'], [92,'5','콜라','cola','🥤'], [92,'5','사이다','soda','🫧'], [92,'5','햄버거','hamburger','🍔'], [92,'5','피자','pizza','🍕'], [92,'5','스파게티','spaghetti','🍝'],
+  [93,'5','일','one','1','number'], [93,'5','이','two','2','number'], [93,'5','삼','three','3','number'], [93,'5','사','four','4','number'], [93,'5','오','five','5','number'], [93,'5','육','six','6','number'], [93,'5','칠','seven','7','number'], [93,'5','팔','eight','8','number'], [93,'5','구','nine','9','number'], [93,'5','십','ten','10','number'], [93,'5','이십','twenty','20','number'], [93,'5','삼십','thirty','30','number'], [93,'5','사십','forty','40','number'], [93,'5','오십','fifty','50','number'], [93,'5','육십','sixty','60','number'], [93,'5','칠십','seventy','70','number'], [93,'5','팔십','eighty','80','number'], [93,'5','구십','ninety','90','number'], [93,'5','백','one hundred','100','number'], [93,'5','천','one thousand','1,000','number'], [93,'5','만','ten thousand','10,000','number'],
+  [102,'6','월요일','Monday','MON','calendar'], [102,'6','화요일','Tuesday','TUE','calendar'], [102,'6','수요일','Wednesday','WED','calendar'], [102,'6','목요일','Thursday','THU','calendar'], [102,'6','금요일','Friday','FRI','calendar'], [102,'6','토요일','Saturday','SAT','calendar'], [102,'6','일요일','Sunday','SUN','calendar'], [102,'6','평일','weekday','M–F','calendar'], [102,'6','주말','weekend','SAT · SUN','calendar'], [102,'6','어제','yesterday','←','calendar'], [102,'6','오늘','today','●','calendar'], [102,'6','내일','tomorrow','→','calendar'],
+  [103,'6','지난주','last week','← WEEK','calendar'], [103,'6','이번 주','this week','THIS WEEK','calendar'], [103,'6','다음 주','next week','WEEK →','calendar'], [103,'6','아침','morning','🌅'], [103,'6','점심','afternoon / lunchtime','☀️'], [103,'6','저녁','evening','🌆'], [103,'6','시간','time','🕒'],
+  [109,'6','구경하다','to watch / look around','👀'], [109,'6','등산하다','to hike','🥾'], [109,'6','빨래하다','to do laundry','🧺'], [109,'6','사진을 찍다','to take a photo','📸'], [109,'6','산책하다','to take a walk','🚶'], [109,'6','쇼핑하다','to shop','🛍️'], [109,'6','청소하다','to clean','🧹'],
+  [118,'7','일어나다','to get up','⏰'], [118,'7','세수하다','to wash one’s face','🧼'], [118,'7','이를 닦다','to brush one’s teeth','🪥'], [118,'7','화장하다','to put on makeup','💄'], [118,'7','옷을 입다','to get dressed','👕'], [118,'7','샤워하다','to shower','🚿'], [118,'7','요리하다','to cook','🍳'], [118,'7','이야기하다','to talk','🗣️'],
+  [119,'7','빨리','quickly','🏃💨'], [119,'7','천천히','slowly','🐢'], [119,'7','조금','a little','🤏'], [119,'7','많이','a lot','🍚'], [119,'7','일찍','early','🌄'], [119,'7','늦게','late','🌙'],
+  [124,'7','수업이 끝나다','for class to end','🏫🔔'], [124,'7','시험이 끝나다','for a test to end','📝✅'], [124,'7','여행하다','to travel','✈️'], [124,'7','캠핑을 하다','to go camping','⛺'],
+  [125,'7','축구하다','to play soccer','⚽'], [125,'7','농구하다','to play basketball','🏀'], [125,'7','야구하다','to play baseball','⚾'], [125,'7','수영하다','to swim','🏊'], [125,'7','테니스 치다','to play tennis','🎾'], [125,'7','골프 치다','to play golf','⛳'],
+  [134,'8','날씨','weather','🌦️'], [134,'8','맑다','sunny / clear','☀️'], [134,'8','흐리다','cloudy','☁️'], [134,'8','비가 오다','to rain','🌧️'], [134,'8','눈이 오다','to snow','🌨️'], [134,'8','따뜻하다','warm','🌤️'], [134,'8','시원하다','cool','🍃'], [134,'8','바람이 불다','windy','💨'],
+  [135,'8','계절','season','🗓️'], [135,'8','봄','spring','🌷'], [135,'8','여름','summer','🏖️'], [135,'8','가을','fall / autumn','🍂'], [135,'8','겨울','winter','❄️']
+];
+const finalSequence = {};
+for (const [bookPage, group, ko, en, icon, visualType] of finalVocabulary) {
+  finalSequence[bookPage] = (finalSequence[bookPage] || 0) + 1;
+  const id = `final-${bookPage}-${String(finalSequence[bookPage]).padStart(2,'0')}`;
+  window.COURSE.items.push({
+    id, ko, en, page: bookPage + window.COURSE.finalScope.pdfPageOffset,
+    bookPage, group, kind: 'word', icon, visualType: visualType || 'emoji',
+    image: `assets/finals/${id}.svg`, contextImage: false
+  });
+}
+window.COURSE.finalVocabulary = window.COURSE.items.filter(item => item.id.startsWith('final-'));
+window.COURSE.scope = 'Final vocabulary from pages 86, 92–93, 102–103, 109, 118–119, 124–125 and 134–135. Midterm speaking review remains available in Pronunciation.';

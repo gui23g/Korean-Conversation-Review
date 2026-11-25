@@ -13,11 +13,10 @@ const base = pathToFileURL(path.join(__dirname, 'index.html')).href;
   await page.goto(base);
   await page.screenshot({ path: __dirname + '/tmp/home-desktop.png', fullPage: true });
   assert.equal(await page.locator('.mode-card').count(), 3);
-  assert((await page.locator('.scope-note').innerText()).includes('pages 28–29'));
+  assert((await page.locator('.scope-note').innerText()).includes('pages 86, 92–93'));
+  assert((await page.locator('.exam-tag').innerText()).includes('FINALS'));
   const missingImages = await page.evaluate(async () => {
-    const scope = COURSE.midtermScope;
-    const excluded = new Set(scope.vocabularyExclusions || []);
-    const selected = COURSE.items.filter(item => item.kind === 'word' && scope.vocabularyPages.includes(item.bookPage) && !excluded.has(item.ko));
+    const selected = COURSE.finalVocabulary;
     const sources = [...new Set(selected.map(item => item.image))];
     const failures = await Promise.all(sources.map(src => new Promise(resolve => {
       const image = new Image();
@@ -27,15 +26,15 @@ const base = pathToFileURL(path.join(__dirname, 'index.html')).href;
     })));
     return failures.filter(Boolean);
   });
-  assert.deepEqual(missingImages, [], 'All assigned vocabulary pictures load, including the SVG illustrations');
+  assert.deepEqual(missingImages, [], 'All 100 Finals illustrations load');
 
   await page.goto(base + '#/match');
-  assert((await page.locator('.session-head').innerText()).includes('93 items'));
+  assert((await page.locator('.session-head').innerText()).includes('100 items'));
   const photos = await page.locator('[data-side=photo]').evaluateAll(buttons => buttons.map(button => button.dataset.id));
   assert.equal(await page.evaluate(ids => ids.every(id => {
     const item = COURSE.items.find(entry => entry.id === id);
-    return item.kind === 'word' && COURSE.midtermScope.vocabularyPages.includes(item.bookPage);
-  }), photos), true, 'Match contains only assigned vocabulary');
+    return item.kind === 'word' && item.id.startsWith('final-') && COURSE.finalScope.vocabularyPages.includes(item.bookPage);
+  }), photos), true, 'Match contains only Finals vocabulary');
   const wrong = photos.find(id => id !== photos[0]);
   await page.locator(`[data-side=photo][data-id=${photos[0]}]`).click();
   await page.locator(`[data-side=word][data-id=${wrong}]`).click();
@@ -63,7 +62,7 @@ const base = pathToFileURL(path.join(__dirname, 'index.html')).href;
   const expected = await page.evaluate(() => {
     const state = JSON.parse(localStorage.getItem('korean-review-v1'));
     const item = COURSE.items.find(entry => entry.id === state.sessions['write:all:all'].queue[state.sessions['write:all:all'].at]);
-    return { ko: item.ko, inScope: item.kind === 'word' && COURSE.midtermScope.vocabularyPages.includes(item.bookPage) };
+      return { ko: item.ko, inScope: item.kind === 'word' && item.id.startsWith('final-') && COURSE.finalScope.vocabularyPages.includes(item.bookPage) };
   });
   assert(expected.inScope, 'Write contains only assigned vocabulary');
   await page.locator('#answer').fill(expected.ko);
@@ -98,12 +97,14 @@ const base = pathToFileURL(path.join(__dirname, 'index.html')).href;
   await page.screenshot({ path: __dirname + '/tmp/listen-desktop.png', fullPage: true });
 
   await page.goto(base + '#/library');
-  assert.equal(await page.locator('.coverage-table tbody tr').count(), 4);
+  assert.equal(await page.locator('.coverage-table tbody tr').count(), 8);
   await page.locator('#search').fill('우산');
   assert.equal(await page.locator('.collection-card').count(), 0, 'Out-of-scope vocabulary is absent');
-  await page.locator('#search').fill('우유');
+  await page.locator('#search').fill('등산하다');
   assert.equal(await page.locator('.collection-card').count(), 1);
-  assert((await page.locator('.collection-card').innerText()).includes('Book p. 54'));
+  assert((await page.locator('.collection-card').innerText()).includes('Book p. 109'));
+  await page.locator('#search').fill('어서 오세요.');
+  assert.equal(await page.locator('.collection-card').count(), 1, 'The old speaking review remains available in the collection');
 
   await page.setViewportSize({ width: 390, height: 844 });
   for (const route of ['', 'match', 'write', 'pronunciation', 'library']) {

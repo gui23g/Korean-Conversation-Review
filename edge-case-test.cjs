@@ -23,7 +23,7 @@ const base = pathToFileURL(path.join(__dirname, 'index.html')).href;
 
   await page.goto(base);
   await page.evaluate(() => {
-    const q = COURSE.items.filter(item => item.kind === 'word' && COURSE.midtermScope.vocabularyPages.includes(item.bookPage) && !COURSE.midtermScope.vocabularyExclusions.includes(item.ko)).map(item => item.id);
+    const q = COURSE.finalVocabulary.map(item => item.id);
     localStorage.setItem('korean-review-v1', JSON.stringify({
       sessions: { 'match:all:all': { queue: q, at: q.length - 2, solved: [], cycle: 1 } },
       mastery: {}, filter: { group: 'all', kind: 'all' }
@@ -38,7 +38,7 @@ const base = pathToFileURL(path.join(__dirname, 'index.html')).href;
     await page.locator(`[data-side=photo][data-id="${id}"]`).click();
   }
   await page.locator('#next').click();
-  assert((await page.locator('.complete').innerText()).includes('93'));
+  assert((await page.locator('.complete').innerText()).includes('100'));
   await page.locator('#restart').click();
   assert((await page.locator('.session-head').innerText()).includes('Cycle 2'));
 
@@ -48,7 +48,7 @@ const base = pathToFileURL(path.join(__dirname, 'index.html')).href;
     const session = state.sessions['write:all:all'];
     return COURSE.items.find(item => item.id === session.queue[session.at]);
   });
-  assert(target.kind === 'word' && [28, 29, 38, 39, 44, 45, 54, 55, 61, 70, 71, 76, 77].includes(target.bookPage));
+  assert(target.kind === 'word' && target.id.startsWith('final-') && [86, 92, 93, 102, 103, 109, 118, 119, 124, 125, 134, 135].includes(target.bookPage));
   await page.locator('#reveal').click();
   await page.locator('#answer').fill(target.ko);
   await page.locator('button[type=submit]').click();
@@ -75,7 +75,7 @@ const base = pathToFileURL(path.join(__dirname, 'index.html')).href;
   assert.deepEqual(played.map(item => item.text), [phrase, phrase]);
 
   await page.evaluate(() => {
-    const vocabulary = COURSE.items.filter(item => item.kind === 'word' && COURSE.midtermScope.vocabularyPages.includes(item.bookPage) && !COURSE.midtermScope.vocabularyExclusions.includes(item.ko));
+    const vocabulary = COURSE.finalVocabulary;
     const longest = [...vocabulary].sort((a, b) => b.en.length - a.en.length);
     const q = [...longest.map(item => item.id), ...vocabulary.filter(item => !longest.slice(0, 4).some(first => first.id === item.id)).map(item => item.id)];
     const state = JSON.parse(localStorage.getItem('korean-review-v1'));
@@ -88,6 +88,6 @@ const base = pathToFileURL(path.join(__dirname, 'index.html')).href;
   await page.screenshot({ path: __dirname + '/tmp/match-long-mobile.png', fullPage: true });
   const clipping = await page.locator('.tile').evaluateAll(buttons => buttons.filter(button => button.scrollHeight > button.clientHeight + 2).map(button => button.innerText));
   assert.deepEqual(clipping, [], 'Long cues should not clip on mobile');
-  console.log('Edge cases passed: final two-pair round, full vocabulary cycle, shuffled restart, hint mastery, Hangul keyboard, Korean dialogue TTS / speed, longest mobile prompts.');
+  console.log('Edge cases passed: Finals two-pair round, 100-word cycle, shuffled restart, hint mastery, Hangul keyboard, midterm dialogue TTS / speed, longest mobile prompts.');
   await browser.close();
 })();
