@@ -29,12 +29,12 @@ const base = pathToFileURL(path.join(__dirname, 'index.html')).href;
   assert.deepEqual(missingImages, [], 'All 100 Finals illustrations load');
 
   await page.goto(base + '#/match');
-  assert((await page.locator('.session-head').innerText()).includes('100 items'));
+  assert((await page.locator('.session-head').innerText()).includes('193 items'));
   const photos = await page.locator('[data-side=photo]').evaluateAll(buttons => buttons.map(button => button.dataset.id));
   assert.equal(await page.evaluate(ids => ids.every(id => {
     const item = COURSE.items.find(entry => entry.id === id);
-    return item.kind === 'word' && item.id.startsWith('final-') && COURSE.finalScope.vocabularyPages.includes(item.bookPage);
-  }), photos), true, 'Match contains only Finals vocabulary');
+    return item.kind === 'word' && (COURSE.finalScope.vocabularyPages.includes(item.bookPage) || COURSE.midtermScope.vocabularyPages.includes(item.bookPage)) && !COURSE.midtermScope.vocabularyExclusions.includes(item.ko);
+  }), photos), true, 'Match contains vocabulary from both exams');
   const wrong = photos.find(id => id !== photos[0]);
   await page.locator(`[data-side=photo][data-id=${photos[0]}]`).click();
   await page.locator(`[data-side=word][data-id=${wrong}]`).click();
@@ -62,9 +62,9 @@ const base = pathToFileURL(path.join(__dirname, 'index.html')).href;
   const expected = await page.evaluate(() => {
     const state = JSON.parse(localStorage.getItem('korean-review-v1'));
     const item = COURSE.items.find(entry => entry.id === state.sessions['write:all:all'].queue[state.sessions['write:all:all'].at]);
-      return { ko: item.ko, inScope: item.kind === 'word' && item.id.startsWith('final-') && COURSE.finalScope.vocabularyPages.includes(item.bookPage) };
+      return { ko: item.ko, inScope: item.kind === 'word' && (COURSE.finalScope.vocabularyPages.includes(item.bookPage) || COURSE.midtermScope.vocabularyPages.includes(item.bookPage)) && !COURSE.midtermScope.vocabularyExclusions.includes(item.ko) };
   });
-  assert(expected.inScope, 'Write contains only assigned vocabulary');
+  assert(expected.inScope, 'Write contains vocabulary from both exam scopes');
   await page.locator('#answer').fill(expected.ko);
   await page.locator('button[type=submit]').click();
   assert(await page.locator('#next').isEnabled());

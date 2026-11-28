@@ -6,21 +6,23 @@ Made by: Guilherme "Boler" Lopes de Carvalho.
 
 ## Study experience
 
-- **Homepage:** introduces the Finals vocabulary review and links to matching, pronunciation, and writing practice.
-- **Match word & photo:** match the 100 Finals words from the assigned pages to related illustrations in four-pair rounds. Incorrect pairs show visual feedback and can be tried again; correct pairs fade and become disabled. Complete a round to continue.
+- **Homepage:** introduces the Midterm and Finals vocabulary review and links to matching, pronunciation, and writing practice.
+- **Match word & photo:** match all 193 vocabulary words from both exams to related illustrations in four-pair rounds: 93 Midterm words and 100 Finals words. Keeping the earlier vocabulary supports continued grammar practice, including past-tense forms. Incorrect pairs show visual feedback and can be tried again; correct pairs fade and become disabled. Complete a round to continue.
 - **Pronunciation review:** retains the midterm dialogue lines and guided role-play. This is listening practice, not part of the Finals. Each card shows Hangul and meaning and plays Korean audio at normal or slow speed. The app does not use a microphone or grade pronunciation. A voice setup guide covers Windows, macOS, Android, and iPhone/iPad.
-- **Write what you see:** identify a Finals vocabulary picture from its English meaning cue and enter the word in Hangul. The on-screen keyboard composes syllables, compound vowels, and final consonants. It supports cursor insertion, selected-text replacement, spaces, punctuation, and component-level backspace.
-- **Exam-focused cycles:** Match and Write share the Finals vocabulary bank; Pronunciation uses the earlier midterm speaking bank only. Each unit filter gets a shuffled cycle, and every item in the selected set appears before the cycle repeats. Completing a cycle lets the learner explicitly start a new shuffle. Small final matching rounds are supported.
-- **Study collection:** search the Finals words and midterm dialogue lines, browse unit counts, and see each item’s book page.
+- **Write what you see:** identify a vocabulary picture from either exam using its English meaning cue and enter the word in Hangul. The on-screen keyboard composes syllables, compound vowels, and final consonants. It supports cursor insertion, selected-text replacement, spaces, punctuation, and component-level backspace.
+- **Exam-focused cycles:** Match and Write use both vocabulary banks (193 words total); Pronunciation uses the earlier midterm speaking bank only. Each unit filter gets a shuffled cycle, and every item in the selected set appears before the cycle repeats. Completing a cycle lets the learner explicitly start a new shuffle. Small final matching rounds are supported.
+- **Study collection:** search all vocabulary words and midterm dialogue lines, browse unit counts, and see each item’s book page.
 - **Progress and answers:** queues, completed matching pairs, filters, and practice counts save locally under `korean-review-v1`. Unfinished matching rounds resume after reload. Writing fields reopen empty while mastery progress remains saved. Hint-assisted answers advance the cycle without counting as independent recall. Answers accept spacing and ordinary sentence punctuation differences while requiring the Korean text to match. Storage failures do not prevent practice.
 
 ## Course material and coverage
 
 The app is based on *Seoul National University Korean Plus, Student’s Book 1A*.
 
-The Finals vocabulary test covers book pages **86, 92–93, 102–103, 109, 118–119, 124–125, and 134–135**. The app includes 100 words from the glossary lists on those pages. Printed book page 135 is PDF page 197 in the supplied book file.
+The Midterm vocabulary test covers book pages **28–29, 38–39, 44–45, 54–55, 61, 70–71, and 76–77**. Those 93 words stay in Match and Write for continued review, including practice with grammar such as past-tense forms.
 
-The professor specified no speaking section for the Finals. Match and Write therefore use only the 100 Finals words above. Pronunciation remains available as a separate midterm review of the speaking activities on book pages **25, 41, 57, and 73**, with 36 dialogue and guided role-play lines. The library shows both collections grouped by unit and labels their exam scope.
+The Finals vocabulary test covers book pages **86, 92–93, 102–103, 109, 118–119, 124–125, and 134–135**. Match and Write include all 100 words from those pages alongside the Midterm vocabulary. Printed book page 135 is PDF page 197 in the supplied book file.
+
+The professor specified no speaking section for the Finals. Pronunciation remains a separate Midterm review of speaking activities on book pages **25, 41, 57, and 73**, with 36 dialogue and guided role-play lines. The library shows vocabulary and speaking collections grouped by unit and labels their exam scope.
 
 English meanings provide writing cues. Every Finals vocabulary item has its own illustration; page 93’s Sino-Korean number words use Arabic numerals as visual cues. Matching answers use the Hangul terms from the book’s vocabulary lists.
 
@@ -52,7 +54,7 @@ The workflow stages `index.html`, `styles.css`, `content.js`, `hangul.js`, `app.
 | --- | --- |
 | `index.html` | Static page shell and script loading |
 | `styles.css` | Responsive layout, typography, exercise and feedback styles |
-| `content.js` | Midterm speaking entries, Finals vocabulary, meanings, pages, and image references |
+| `content.js` | Midterm vocabulary and speaking entries, Finals vocabulary, meanings, pages, and image references |
 | `hangul.js` | Hangul composition, keyboard editing, and answer normalization |
 | `app.js` | Hash routing, exercise cycles, speech, local progress, and rendering |
 | `assets/` | Book image crops, illustrations, and country flags used in exercises |
